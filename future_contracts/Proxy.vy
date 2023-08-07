@@ -17,6 +17,8 @@ event AdminChanged:
 def __init__(implementation: address):
     self.implementation = implementation
     self.admin = msg.sender
+    log Upgraded(implementation)
+    log AdminChanged(empty(address), msg.sender)
 
 
 @external
