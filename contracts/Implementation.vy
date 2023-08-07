@@ -1,5 +1,6 @@
 # @version 0.3.9
 
+@view
 @external
-def greet(user: address) -> String[10]:
-    return "hello"
+def lucky() -> uint256:
+    return 777
