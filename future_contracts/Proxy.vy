@@ -1,8 +1,8 @@
 # @version 0.3.x
 # @dev storage slot override example implementing eip-1967 proxy
 
-implementation: public(address) @ 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc
-admin: public(address) @ 0xb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d6103
+implementation: public(address) @ keccak256("eip1967.proxy.implementation") - 1
+admin: public(address) @ keccak256("eip1967.proxy.admin") - 1
 
 
 event Upgraded:
