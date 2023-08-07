@@ -8,7 +8,7 @@ def dev(accounts):
 
 
 @pytest.fixture
-def alice(accounts):
+def eve(accounts):
     return accounts[1]
 
 
