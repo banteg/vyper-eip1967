@@ -3,7 +3,6 @@
 
 implementation: public(address)
 admin: public(address)
-beacon: public(address)
 
 
 event Upgraded:
@@ -27,3 +26,8 @@ def change_admin(new_admin: address):
     assert msg.sender == current_admin
     self.admin = new_admin
     log AdminChanged(current_admin, new_admin)
+
+
+@external
+def __default__():
+    raw_call(self.implementation, msg.data, is_delegate_call=True)
