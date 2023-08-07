@@ -14,6 +14,21 @@ event AdminChanged:
 
 
 @external
+def __init__(implementation: address):
+    self.implementation = implementation
+    self.admin = msg.sender
+
+
+@external
+def __default__() -> uint256:
+    """
+    FIXME vyper needs a way to pass verbatim buffer for this to work universally
+    """
+    result: uint256 = convert(raw_call(self.implementation, msg.data, max_outsize=32, is_delegate_call=True), uint256)
+    return result
+
+
+@external
 def upgrade_to(new_implementation: address):
     assert msg.sender == self.admin
     self.implementation = new_implementation
@@ -26,8 +41,3 @@ def change_admin(new_admin: address):
     assert msg.sender == current_admin
     self.admin = new_admin
     log AdminChanged(current_admin, new_admin)
-
-
-@external
-def __default__():
-    raw_call(self.implementation, msg.data, is_delegate_call=True)
