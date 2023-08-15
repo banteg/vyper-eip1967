@@ -4,3 +4,6 @@ ethereum:
   local:
     default_provider: foundry
   default_network: local
+
+foundry:
+  host: auto
